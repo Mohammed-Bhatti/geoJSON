@@ -105,3 +105,14 @@ select st_distance(st_setsrid(st_makepoint(-179, 89),4326)::geography, st_setsri
  st_distance
 -------------
          358
+
+-- Check Performance between Regular geom and ST_SUBDIVIDE geom
+-- Given two points
+select cocom_aor_name
+from s2a_trk.aor_cocoms
+where ST_Intersects(geom, ST_SetSRID(st_MakePoint(56.469519, 32.668505),4326));
+
+select cocom_aor_name
+from s2a_trk.aor_cocoms_sub
+where ST_Intersects(geom, ST_SetSRID(st_MakePoint(56.469519, 32.668505),4326));
+                                     
